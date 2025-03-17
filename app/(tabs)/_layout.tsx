@@ -4,7 +4,7 @@ import React from "react"
 import { Tabs } from "expo-router"
 import { icons } from "@/constants"
 import { View, Image, Text } from "react-native"
-
+import { StatusBar } from "expo-status-bar"
 // function TabBarIcon(props: {
 //   name: React.ComponentProps<typeof Octicons>["name"]
 //   color: string
@@ -13,6 +13,8 @@ import { View, Image, Text } from "react-native"
 // }
 
 // สร้าง component TabIcon สำหรับแสดง icon แต่ละ tab
+
+
 const TabIcon = ({ icon, color }: any) => {
   return (
     <View className="flex items-center justify-center gap-4">
@@ -28,6 +30,7 @@ const TabIcon = ({ icon, color }: any) => {
 
 export default function TabLayout() {
   return (
+
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#FFA001",
