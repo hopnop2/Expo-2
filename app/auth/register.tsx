@@ -2,12 +2,17 @@ import { View, Text, ScrollView, Image, Dimensions } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import FormField from '@/components/FormField'
 import CustomButton from '@/components/CustomButton'
-import { Link } from 'expo-router'
 import { images } from '@/constants'
-
+import Button from '@/components/Button'
+import {  router } from "expo-router";
+import { KeyboardAvoidingView } from 'react-native'
+import { Platform } from 'react-native'
 export default function register() {
   return (
     <SafeAreaView className="bg-gray-900 h-full px-4 my-6">
+        <KeyboardAvoidingView
+            behavior={Platform.OS === 'ios' ? 'padding' : 'height'}
+            className='h-full'>
       <ScrollView>
         <View
           className="w-full flex justify-center h-full px-4 my-6"
@@ -54,15 +59,11 @@ export default function register() {
             <Text className="text-lg text-gray-100 font-pregular">
               Have an account already?
             </Text>
-            <Link
-              href="/auth/login"
-              className="text-lg font-psemibold text-orange-500 "
-            >
-              Login
-            </Link>
+            <Button title="Register" onPress={() => router.replace('/auth/login')} />
           </View>
         </View>
       </ScrollView>
+      </KeyboardAvoidingView>
     </SafeAreaView>
   )
 }

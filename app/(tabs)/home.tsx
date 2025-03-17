@@ -124,7 +124,7 @@ export default function Home() {
       id: 2,
       title: "Sample IOT for Beginner 2",
       image:
-        "https://iottechnews.com/wp-content/uploads/2023/03/IoT-Runs-on-Arm-Paid-Ads_300x600_ST2.png",
+        "https://c8.alamy.com/comp/T9K1M7/internet-of-things-iot-concept-global-network-connection-monitoring-and-control-smart-systems-vector-illustration-T9K1M7.jpg",
     },
     {
       id: 3,
@@ -170,9 +170,6 @@ export default function Home() {
           <View className="flex py-6 space-y-6">
             <View className="flex justify-between items-start flex-row mb-6 px-4">
               <View>
-                <Text className="font-pmedium text-md text-gray-100">
-                  ยินดีต้อนรับ
-                </Text>
                 <Text className="text-2xl text-white">สามิตร โกยม</Text>
               </View>
 
@@ -204,7 +201,9 @@ export default function Home() {
                 />
               )}
               showsHorizontalScrollIndicator={false}
-              className="mt-4"
+             className="mt-4"
+            
+             
             />
           </View>
         )}

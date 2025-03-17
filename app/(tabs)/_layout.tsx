@@ -3,7 +3,8 @@ import React from "react"
 // import Octicons from "@expo/vector-icons/Octicons"
 import { Tabs } from "expo-router"
 import { icons } from "@/constants"
-import { View, Image, Text } from "react-native"
+// เพิ่ม Platform API เพื่อตรวจสอบว่ากำลังรันบนเว็บหรือมือถือ
+import { View, Image, Text, StyleSheet, Platform } from "react-native"
 import { StatusBar } from "expo-status-bar"
 // function TabBarIcon(props: {
 //   name: React.ComponentProps<typeof Octicons>["name"]
@@ -13,24 +14,37 @@ import { StatusBar } from "expo-status-bar"
 // }
 
 // สร้าง component TabIcon สำหรับแสดง icon แต่ละ tab
-
-
-const TabIcon = ({ icon, color }: any) => {
+const TabIcon = ({ icon, color, focused }: any) => {
   return (
-    <View className="flex items-center justify-center gap-4">
-      <Image
-        source={icon}
-        resizeMode="contain"
-        tintColor={color}
-        className="w-6 h-8"
-      />
+    // เปลี่ยนจาก className เป็น styles ซึ่งมีประสิทธิภาพดีกว่าบนเว็บ
+    <View style={styles.iconContainer}>
+      {/* แยกการแสดงผลระหว่างเว็บและมือถือ */}
+      {Platform.OS === 'web' ? (
+        // สำหรับเว็บ: ไม่ใช้ tintColor เพราะมีปัญหาบนเว็บ
+        <Image
+          source={icon}
+          resizeMode="contain"
+          // ใช้ opacity แทน tintColor บนเว็บ
+          style={[
+            styles.iconImage,
+            { opacity: focused ? 1 : 0.7 }
+          ]}
+        />
+      ) : (
+        // สำหรับมือถือ: ใช้ tintColor ตามปกติ
+        <Image
+          source={icon}
+          resizeMode="contain"
+          tintColor={color}
+          style={styles.iconImage}
+        />
+      )}
     </View>
   )
 }
 
 export default function TabLayout() {
   return (
-
     <Tabs
       screenOptions={{
         tabBarActiveTintColor: "#FFA001",
@@ -44,6 +58,11 @@ export default function TabLayout() {
           height: 70,
           paddingTop: 5,
         },
+        // เพิ่ม transition properties เฉพาะบนเว็บช่วยให้การเปลี่ยนแท็บราบรื่น
+        tabBarItemStyle: Platform.OS === 'web' ? { 
+          transitionProperty: 'color',
+          transitionDuration: '150ms'
+        } : undefined,
       }}
     >
       <Tabs.Screen
@@ -123,3 +142,16 @@ export default function TabLayout() {
     </Tabs>
   )
 }
+
+// สร้าง StyleSheet แทนการใช้ className เพื่อประสิทธิภาพที่ดีขึ้นบนเว็บ
+const styles = StyleSheet.create({
+  iconContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 3, // ใช้ margin แทน gap ซึ่งมีปัญหาบนเว็บบางครั้ง
+  },
+  iconImage: {
+    width: 24,
+    height: 24,
+  }
+});

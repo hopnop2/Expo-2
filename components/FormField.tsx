@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { View, Text, TextInput, TouchableOpacity, Image } from "react-native";
+import { View, Text, TextInput, TouchableOpacity, Image, StyleSheet } from "react-native";
 
 import { icons } from "../constants";
 
@@ -17,9 +17,12 @@ const FormField = ({
         <View className={`space-y-2 ${otherStyles}`}>
             <Text className="text-base text-gray-100 font-pmedium mb-4">{title}</Text>
 
-            <View className="w-full h-16 px-4 text-gray-200 rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row items-center ">
+            <View className="w-full h-16 px-4 rounded-2xl border-2 border-black-200 focus:border-secondary flex flex-row items-center">
                 <TextInput
-                    className="w-full bg-white-200 rounded-xl min-h-[62px] flex flex-row justify-center items-center mt-5"
+                    // แก้ไขส่วนนี้: เปลี่ยน bg-white-200 เป็น bg-transparent และเพิ่ม text-white
+                    className="w-full bg-transparent rounded-xl min-h-[62px] flex flex-row justify-center items-center text-white mt-5"
+                    // เพิ่ม style เพื่อกำหนดสีข้อความชัดเจน
+                    style={styles.input}
                     value={value}
                     placeholder={placeholder}
                     placeholderTextColor="#7B7B8B"
@@ -42,4 +45,11 @@ const FormField = ({
     );
 };
 
-export default FormField
+// เพิ่ม StyleSheet เพื่อกำหนดสีข้อความให้ชัดเจน
+const styles = StyleSheet.create({
+    input: {
+        color: '#FFFFFF', // กำหนดสีข้อความเป็นสีขาว
+    }
+});
+
+export default FormField;
