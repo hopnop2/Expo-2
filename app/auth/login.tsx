@@ -7,6 +7,7 @@ import { useState } from 'react'
 import Button from '@/components/Button'
 import { router } from 'expo-router'
 import { supabase } from '@/utils/supabase'
+import AsyncStorage from '@react-native-async-storage/async-storage'
 
 export default function login() {
 
@@ -39,6 +40,8 @@ export default function login() {
       Alert.alert("Login Failed", error.message)
     } else {
       console.log('Token:', data.session?.access_token) // Log the token
+      await AsyncStorage.setItem('token', data.session?.access_token)
+      await AsyncStorage.setItem('isLoggedIn',"ture")
       Alert.alert(
         'Login Successful',
         'You have successfully registered. Press OK to login.',
@@ -105,7 +108,7 @@ export default function login() {
               <Text className="text-lg text-gray-100 font-pregular">
                 Don't have an account?
               </Text>
-              <Button title="Register" onPress={() => router.replace('/register')} />
+              <Button title="Register" onPress={() => router.replace('/auth/register')} />
             </View>
           </View>
         </ScrollView>

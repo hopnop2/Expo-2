@@ -46,7 +46,7 @@ export default function register() {
         [
           {
             text: 'OK',
-            onPress: () => router.replace('/login'), // ส่งไปยังหน้า Login
+            onPress: () => router.replace('/auth/login'), // ส่งไปยังหน้า Login
           },
         ]
       )
@@ -116,7 +116,7 @@ export default function register() {
               <Text className="text-lg text-gray-100 font-pregular">
                 Have an account already?
               </Text>
-              <Button title="Login" onPress={() => router.replace('/login')} />
+              <Button title="Login" onPress={() => router.replace('/auth/login')} />
             </View>
           </View>
         </ScrollView>

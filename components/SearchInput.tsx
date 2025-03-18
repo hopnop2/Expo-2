@@ -19,12 +19,13 @@ const SearchInput = ({ initialQuery }: { initialQuery?: string }) => {
         style={{ fontFamily: 'NotoSansThai-Regular' }}
       />
 
-      <TouchableOpacity
+<TouchableOpacity
         onPress={() => {
           if (query === "")
             return Alert.alert(
               "ไม่พบคำค้นหา",
-              "กรุณาระบุคำค้นหา"
+              "กรุณาระบุคำค้นหา",
+              [{ text: "ตกลง" }]
             );
 
           if (pathname.startsWith("/search")) router.setParams({ query });
