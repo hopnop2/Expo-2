@@ -229,7 +229,7 @@ export default function Home() {
               renderItem={({ item }) => (
                 <HorizontalCard
                   image={
-                    "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+                    "https://media.studio7thailand.com/154874/iPhone_16_Black_PDP_Image_Position_1a_Black_Color__TH-TH-square_medium.png"
                   }
                   title={item.title}
                   onPress={() => handleHorizontalCardPress(item)}
@@ -247,7 +247,7 @@ export default function Home() {
             productname={item.title}
             productprice={item.price}
             productimage={
-              "https://upload.wikimedia.org/wikipedia/commons/1/14/No_Image_Available.jpg"
+              "https://store.storeimages.cdn-apple.com/4982/as-images.apple.com/is/macbook-pro-og-202410?wid=1200&hei=630&fmt=jpeg&qlt=95&.v=1728658184478"
             }
             postDate={item.created_at}
             description={item.description}
